@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spotify</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div id="app" x-data="{track: track, artist: artist, album: album}">
+      <img x-bind:src="artwork" x-bind:alt="track" class="artwork" />
+      <div class="meta">
+        <h1 x-text="track" x-bind:title="track"></h1>
+        <h2 x-text="artist"></h2>
+        <h3 x-text="album"></h3>
+      </div>
+    </div>
+
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <script>
+      const DATA_SOURCE = '/Snip/Snip_Metadata.json';
+      const UPDATE_INTERVAL = 3000;
+
+      let track = 'Nothing playing';
+      let artist = '';
+      let album = '';
+      let artwork = 'https://picsum.photos/300';
+
+      // get the updated info
+      async function updateInfo() {
+        const newData = await fetch(DATA_SOURCE);
+        const song = await newData.json();
+
+        // only proceed if the song has changed
+        if (song.name === track) return;
+
+        // update our values
+        track = song.name;
+        artist = song.artists[0].name;
+        album = song.album.name;
+        artwork = song.album.images[1].url;
+      }
+
+      // initial call
+      updateInfo();
+      setInterval(updateInfo, UPDATE_INTERVAL);
+    </script>
+  </body>
+</html>

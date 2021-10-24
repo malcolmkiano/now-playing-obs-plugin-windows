@@ -1,0 +1,8 @@
+# Snip info (this element wouldn't work without them)
+# Find info here: https://github.com/dlrudie/Snip
+Snip/Spotify*
+Snip/*.md
+
+# Snip generated files
+Snip/Snip_*
+Snip/Snip.txt
