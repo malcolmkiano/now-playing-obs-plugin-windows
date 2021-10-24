@@ -30,7 +30,8 @@
       // get the updated info
       async function updateInfo() {
         const newData = await fetch(DATA_SOURCE);
-        const song = await newData.json();
+        const data = await newData.json();
+        const song = data.item || data;
 
         // only proceed if the song has changed
         if (song.name === track) return;
