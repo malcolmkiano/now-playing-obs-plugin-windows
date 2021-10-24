@@ -11,6 +11,7 @@ body {
   font-size: 125%;
   background: #0e0e0e;
   color: #fff;
+  --accent: #ffd500;
 }
 
 h1,
@@ -20,14 +21,14 @@ h3 {
   margin: 0;
   line-height: 1;
   white-space: nowrap;
-  max-width: 12ch;
+  max-width: 20ch;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 h1 {
   font-size: 2.3rem;
-  color: #ffd500;
+  color: var(--accent);
 }
 
 h2 {
@@ -45,6 +46,7 @@ h3 {
   width: 800px;
   display: flex;
   padding: 1.2rem;
+  position: relative;
 }
 
 .artwork {
@@ -57,4 +59,16 @@ h3 {
 
 .meta {
   margin-top: 0.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  right: 2.4rem;
+  height: 3rem;
+  fill: #666;
+  transform: translateY(-50%);
+  opacity: 0.2;
 }
